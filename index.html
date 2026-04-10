@@ -1,97 +1,405 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" href="files/jemdoc.css" type="text/css" />
-<link rel="icon" href="./img/favicon.ico">
-<title>Naliang Guo - Personal Homepage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naliang Guo | Personal Homepage</title>
+  <link rel="icon" href="./img/favicon.ico" />
+  <style>
+    :root {
+      --primary: #1f4e79;
+      --primary-dark: #173a5a;
+      --accent: #2e86c1;
+      --text: #1f1f1f;
+      --text-light: #5f6b7a;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --border: #e4e8ef;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .menu {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .menu-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 14px 20px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      transition: color 0.2s ease;
+    }
+
+    .menu a:hover {
+      color: var(--accent);
+    }
+
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 36px auto 48px;
+      padding: 0 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .hero-text h1 {
+      margin: 0 0 8px 0;
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    .hero-text .cn-name {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    .hero-text .position {
+      margin: 16px 0 18px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .hero-text .meta {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .hero-links a {
+      display: inline-block;
+      padding: 9px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .hero-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 28px 30px;
+      margin-bottom: 22px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      border-left: 5px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .section p {
+      margin: 0 0 12px 0;
+    }
+
+    .section ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .section li {
+      margin-bottom: 12px;
+    }
+
+    .interest-list,
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 28px;
+      padding-left: 18px;
+    }
+
+    .pub-list li,
+    .project-list li,
+    .award-list li,
+    .edu-list li,
+    .skill-list li {
+      margin-bottom: 14px;
+    }
+
+    .label {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      padding: 24px 10px 10px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-links {
+        justify-content: center;
+      }
+
+      .interest-list,
+      .contact-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrapper {
+        margin-top: 20px;
+      }
+
+      .hero,
+      .section {
+        padding: 22px 18px;
+      }
+
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .menu-inner {
+        gap: 16px;
+        padding: 12px 14px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="menu"> 
-    <a href="#home">Home</a>
-    <a href="#education">Education</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#skills">Skills</a>
-    <a href="#awards">Awards</a>
-</div>
+  <nav class="menu">
+    <div class="menu-inner">
+      <a href="#home">Home</a>
+      <a href="#biography">Biography</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<a id="home" class="anchor"></a>
-<div id="container">
-<div class="container">
-<div id="toptitle">
-    <h1>Naliang Guo &nbsp;&nbsp;郭纳良</h1>
-</div>
+  <main class="wrapper">
+    <section id="home" class="hero">
+      <div class="hero-image">
+        <img src="./img/profile.jpg" alt="Naliang Guo" />
+      </div>
+      <div class="hero-text">
+        <h1>
+          Naliang Guo
+          <span class="cn-name">郭纳良</span>
+        </h1>
+        <div class="position">Postdoctoral Researcher</div>
+        <div class="meta">
+          Institute of Geographic Sciences and Natural Resources Research<br>
+          Chinese Academy of Sciences, Beijing, China
+        </div>
+        <div class="meta">
+          <span class="label">Email:</span> guonl.19s@igsnrr.ac.cn / guonl_wel@163.com
+        </div>
+        <div class="hero-links">
+          <a href="https://www.researchgate.net/profile/Naliang-Guo" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+          <a href="mailto:guonl.19s@igsnrr.ac.cn">Academic Email</a>
+          <a href="mailto:guonl_wel@163.com">Personal Email</a>
+        </div>
+      </div>
+    </section>
 
-<table class="imgtable">
-    <tr>
-        <td>
-            <a href="./"><img src="./img/profile.jpg" alt="Naliang Guo" height="250px" width="333px"/></a>&nbsp;
-        </td>
-        <td align="left">
-            <p><font color="#424949" size="4"><b>Ph.D. Candidate</b></font><br><br>
-            Email: guonl.19s@igsnrr.ac.cn / guonl_wel@163.com<br><br>
-            <a href="https://www.researchgate.net/profile/Naliang-Guo" target="_blank">ResearchGate Profile</a><br>
-            Institute of Geographic Sciences and Natural Resources Research, CAS, Beijing, China<br>
-            </p>
-        </td>
-    </tr>
-</table>
+    <section id="biography" class="section">
+      <h2>Biography</h2>
+      <p>
+        Naliang Guo is a postdoctoral researcher at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences. He received his Bachelor's degree in Mathematics and Applied Mathematics from China University of Geosciences, Wuhan, and completed his doctoral training in Cartography and Geographic Information Systems.
+      </p>
+      <p>
+        His research focuses on flood risk assessment, emergency management, agricultural resource and environmental systems, and spatial modeling. His work integrates geospatial analysis, agent-based modeling, system dynamics, and data-driven approaches to support environmental governance, disaster response, and territorial spatial planning.
+      </p>
+    </section>
 
-<h2>Biography</h2>
-<p>Naliang Guo is a Ph.D. candidate at the Institute of Geographic Sciences and Natural Resources Research, CAS, under the supervision of Prof. Xing Gao and Prof. Feng Wu. 
-    He holds a Bachelor's degree in Mathematics and Applied Mathematics from China University of Geosciences, Wuhan. His research focuses on water systems, flood risk mechanisms, and agricultural non-point source pollution control.
-</p>
+    <section class="section">
+      <h2>Research Interests</h2>
+      <ul class="interest-list">
+        <li>Flood risk assessment and emergency management</li>
+        <li>Agricultural resource and environmental systems</li>
+        <li>Spatial modeling and simulation</li>
+        <li>Agent-based modeling and system dynamics</li>
+        <li>Geospatial data analysis and decision support</li>
+        <li>Territorial spatial planning and governance</li>
+      </ul>
+    </section>
 
-<a id="education" class="anchor"></a>
-<h2>Education</h2>
-<ul>
-    <li>Ph.D. Candidate in Cartography and Geographic Information System, Institute of Geographic Sciences and Natural Resources Research, CAS (2019 - Present)</li>
-    <li>B.S. in Mathematics and Applied Mathematics, China University of Geosciences, Wuhan (2015 - 2019)</li>
-</ul>
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <ul class="edu-list">
+        <li>
+          <span class="label">Ph.D. in Cartography and Geographic Information Systems</span><br>
+          Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, 2019–Present
+        </li>
+        <li>
+          <span class="label">B.S. in Mathematics and Applied Mathematics</span><br>
+          China University of Geosciences, Wuhan, 2015–2019
+        </li>
+      </ul>
+    </section>
 
-<a id="research" class="anchor"></a>
-<h2>Research Projects</h2>
-<ul>
-    <li>Evolution of water system and regulation mechanism of agricultural non-point source in Upper reaches of Honghe River Basin (2022 - Present)</li>
-    <li>Flood risk mechanism and multi-dimensional emergency strategies in Baiyangdian Basin under changing environment (2019 - Present)</li>
-    <li>Theoretical approach to stability assessment (2019 - 2022)</li>
-</ul>
+    <section id="research" class="section">
+      <h2>Research Projects</h2>
+      <ul class="project-list">
+        <li>
+          <span class="label">Evolution of water systems and regulation mechanisms of agricultural non-point source pollution in the upper reaches of the Honghe River Basin</span><br>
+          2022–Present
+        </li>
+        <li>
+          <span class="label">Flood risk mechanisms and multi-dimensional emergency strategies in the Baiyangdian Basin under changing environmental conditions</span><br>
+          2019–Present
+        </li>
+        <li>
+          <span class="label">Theoretical approaches to stability assessment</span><br>
+          2019–2022
+        </li>
+      </ul>
+    </section>
 
-<a id="publications" class="anchor"></a>
-<h2>Selected Publications</h2>
-<ul>
-    <li>Guo N., Shi C., Yan M., Gao X., & Wu F. (2022). Modeling agricultural water-saving compensation policy: An ABM approach and application. Journal of Cleaner Production, 344, 131035.</li>
-    <li>Wu F., Guo N., Kumar P., & Niu L. (2021). Scenario-based extreme flood risk analysis of Xiong'an New Area in northern China. Journal of Flood Risk Management, 14(2), e12707.</li>
-    <li>Shi C., Guo N., Zeng L., & Wu F. (2022). How climate change is going to affect urban livability in China. Climate Services, 26, 100284.</li>
-    <!-- You can add more publications here -->
-</ul>
+    <section id="publications" class="section">
+      <h2>Selected Publications</h2>
+      <ul class="pub-list">
+        <li>
+          Guo, N., Shi, C., Yan, M., Gao, X., &amp; Wu, F. (2022). Modeling agricultural water-saving compensation policy: An ABM approach and application. <i>Journal of Cleaner Production</i>, 344, 131035.
+        </li>
+        <li>
+          Wu, F., Guo, N., Kumar, P., &amp; Niu, L. (2021). Scenario-based extreme flood risk analysis of Xiong'an New Area in northern China. <i>Journal of Flood Risk Management</i>, 14(2), e12707.
+        </li>
+        <li>
+          Shi, C., Guo, N., Zeng, L., &amp; Wu, F. (2022). How climate change is going to affect urban livability in China. <i>Climate Services</i>, 26, 100284.
+        </li>
+      </ul>
+    </section>
 
-<a id="skills" class="anchor"></a>
-<h2>Skills</h2>
-<ul>
-    <li>Programming Languages: Python, Java, MATLAB, R, C, MySQL</li>
-    <li>Software: ArcGIS, GEMPACK, Gephi, GeoDa, Vensim</li>
-    <li>Modeling: Partial Equilibrium (PE), Agent-Based Modeling (ABM), System Dynamics (SD)</li>
-</ul>
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <ul class="skill-list">
+        <li><span class="label">Programming &amp; Data Analysis:</span> Python, Java, MATLAB, R, C, MySQL</li>
+        <li><span class="label">Geospatial &amp; Analytical Software:</span> ArcGIS, Gephi, GeoDa, GEMPACK, Vensim</li>
+        <li><span class="label">Modeling &amp; Methods:</span> Partial Equilibrium Modeling, Agent-Based Modeling, System Dynamics, Spatial Analysis</li>
+      </ul>
+    </section>
 
-<a id="awards" class="anchor"></a>
-<h2>Awards and Honors</h2>
-<ul>
-    <li>2022: Director's Scholarship, Institute of Geographic Sciences and Natural Resources Research, CAS</li>
-    <li>2020: Merit Student, University of Chinese Academy of Sciences</li>
-    <li>2017: President's Scholarship, China University of Geosciences, Wuhan</li>
-    <!-- You can add more awards here -->
-</ul>
+    <section id="awards" class="section">
+      <h2>Awards and Honors</h2>
+      <ul class="award-list">
+        <li><span class="label">2022</span> — Director's Scholarship, Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences</li>
+        <li><span class="label">2020</span> — Merit Student, University of Chinese Academy of Sciences</li>
+        <li><span class="label">2017</span> — President's Scholarship, China University of Geosciences, Wuhan</li>
+      </ul>
+    </section>
 
-<div id="footer">
-    <p style="text-align:center;">&copy; 2024 Naliang Guo. All rights reserved.</p>
-</div>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li><span class="label">Institution:</span> Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences</li>
+        <li><span class="label">Location:</span> Beijing, China</li>
+        <li><span class="label">Academic Email:</span> <a href="mailto:guonl.19s@igsnrr.ac.cn">guonl.19s@igsnrr.ac.cn</a></li>
+        <li><span class="label">Personal Email:</span> <a href="mailto:guonl_wel@163.com">guonl_wel@163.com</a></li>
+        <li><span class="label">ResearchGate:</span> <a href="https://www.researchgate.net/profile/Naliang-Guo" target="_blank" rel="noopener noreferrer">Profile Link</a></li>
+      </ul>
+    </section>
 
-</div>
-</div>
+    <footer class="footer">
+      &copy; 2024–2026 Naliang Guo. All rights reserved.
+    </footer>
+  </main>
 
 </body>
 </html>
